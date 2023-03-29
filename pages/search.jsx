@@ -24,7 +24,7 @@ export default function Search({recipes}) {
     e.preventDefault()
     if (!query.trim()) return
     // TODO: Use router.replace with router.pathname + queryString to send query to getServerSideProps
-    router.replace(router.pathname + "?q=" + query)
+    router.replace(router.pathname + "?q=" + queryString)
   }
   return (
     <>
@@ -48,6 +48,7 @@ export default function Search({recipes}) {
         recipes?.length
         ? <section className={styles.results}>
           {/* TODO: Render recipes with RecipePreview Component */}
+          {recipes.map((recipe, index) =>(<RecipePreview key={index} {...recipe}/>))}
         </section>
         : <p className={styles.noResults}>No Recipes Found!</p>
       }
