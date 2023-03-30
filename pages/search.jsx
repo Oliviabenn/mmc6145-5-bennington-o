@@ -24,7 +24,8 @@ export default function Search({recipes}) {
     e.preventDefault()
     if (!query.trim()) return
     // TODO: Use router.replace with router.pathname + queryString to send query to getServerSideProps
-    router.replace(router.pathname + "?q=" + queryString)
+
+    router.replace(router.pathname + "?q=" + query);
   }
   return (
     <>
