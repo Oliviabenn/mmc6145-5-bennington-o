@@ -5,14 +5,11 @@ import { getRecipe } from '../../util/recipe'
 import styles from '../../styles/recipe.module.css'
 
 // TODO: destructure id parameter from argument passed to getServerSideProps
-export async function getServerSideProps(context){
-  const id = context.params.id
-  const props = {}
+export async function getServerSideProps({params}){
+  const recipeInfo = await getRecipe(params.id)
+  const props = {recipeInfo: recipeInfo ? recipeInfo : null}
 
   // TODO: call getRecipe using id parameter and pass return value as recipeInfo prop
-  let recipeInfo = await getRecipe(id)
-  props.recipeInfo = recipeInfo
-  
   return {props}
 }
 
@@ -26,10 +23,6 @@ export default function Recipe({recipeInfo}) {
       </Head>
 
       {/* TODO: Render RecipeInfo component with recipeInfo prop, OR RecipeError if no recipe */}
-      {/* <RecipeInfo
-          />
-           */}
-
             {recipeInfo !==null ? <RecipeInfo {...recipeInfo}/> : <RecipeError/>}
       
           
