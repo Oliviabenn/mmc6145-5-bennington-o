@@ -11,7 +11,7 @@ export async function getServerSideProps({query}) {
   const props = {};
   if (!query.q)
   return { props };
-  const recipes = await searchRecipies(query.q)
+  const recipes = await searchRecipes(query.q)
   // TODO: use searchRecipes to attach recipes prop based on query parameter
   return { props: {recipes} }
 }
