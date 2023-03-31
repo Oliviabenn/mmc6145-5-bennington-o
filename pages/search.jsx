@@ -16,6 +16,7 @@ export async function getServerSideProps({query}) {
   return { props: {recipes} }
 }
 
+/* ----------*/
 export default function Search({recipes}) {
   const router = useRouter()
   const [query, setQuery] = useState("")
@@ -23,9 +24,9 @@ export default function Search({recipes}) {
   function handleSubmit(e) {
     e.preventDefault()
     if (!query.trim()) return
-    // TODO: Use router.replace with router.pathname + queryString to send query to getServerSideProps
     router.replace(router.pathname + "?q=" + query);
   }
+
   return (
     <>
       <Head>
@@ -44,12 +45,11 @@ export default function Search({recipes}) {
           id="recipe-search" autoFocus/>
         <button type="submit">Submit</button>
       </form>
+      
       {recipes?.length? (
         <section className={styles.results}>
-          {/* TODO: Render recipes with RecipePreview Component */}
           {recipes?.map(({id, title, image}) => (
-            <RecipePreview key={id} id={id} title={title} image={image} />
-          ))}
+            <RecipePreview key={id} id={id} title={title} image={image}/>))}
         </section>) 
         :
         (<p className={styles.noResults}>No Recipes Found!</p>) 
@@ -57,6 +57,7 @@ export default function Search({recipes}) {
     </>
   )
 }
+/* ----------*/
 
 function RecipePreview({id, title, image}) {
   return (
