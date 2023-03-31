@@ -44,15 +44,15 @@ export default function Search({recipes}) {
           id="recipe-search" autoFocus/>
         <button type="submit">Submit</button>
       </form>
-      {recipes?.length?(
-         <section className={styles.results}>
-      {
-      /* TODO: Render recipes with RecipePreview Component */ 
-      recipes.map(({ id, title, image }) => (
-        <RecipePreview id = {id} key = {id} title = {title} image = {image}/>)
-        )}
-        </section>)
-        : (<p className={styles.noResults}>No Recipes Found!</p>) 
+      {recipes?.length? (
+        <section className={styles.results}>
+          {/* TODO: Render recipes with RecipePreview Component */}
+          {recipes?.map(({id, title, image}) => (
+            <RecipePreview key={id} id={id} title={title} image={image} />
+          ))}
+        </section>) 
+        :
+        (<p className={styles.noResults}>No Recipes Found!</p>) 
         }
     </>
   )
